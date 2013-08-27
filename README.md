@@ -40,15 +40,6 @@ Add `accepts_nested_attributes_for` for translations to your **translated** mode
   end
 ```
 
-Configure your **translated** model to use `:globalize_tabs` field type for `translations` association:
-``` ruby
-  config.model 'Model' do
-    edit do
-      configure :translations, :globalize_tabs
-    end
-  end
-```
-
 Add configuration to associated **translation** model:
 ``` ruby
   config.model 'Model::Translation' do
