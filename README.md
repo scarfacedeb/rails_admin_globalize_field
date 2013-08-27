@@ -63,7 +63,9 @@ Add additional stylesheet in app/assets/stylesheets/rails_admin/theming.scss:
   */
 ```
 
+## Screenshot
 
+![Screenshot](screenshots/screenshots/shot1.png)
 
 ## Contributing
 
