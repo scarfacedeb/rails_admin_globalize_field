@@ -48,6 +48,7 @@ Add `accepts_nested_attributes_for` for translations to your **translated** mode
 Add configuration to associated **translation** model:
 ``` ruby
   config.model 'Model::Translation' do
+    visible false
     configure :locale, :hidden
     include_fields :locale, :title, :desc
   end
