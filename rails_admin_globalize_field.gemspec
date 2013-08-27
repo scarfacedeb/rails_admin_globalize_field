@@ -18,6 +18,13 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
+  # TODO: test on earlier versions
+  spec.add_runtime_dependency "rails", ">= 4.0"
+  spec.add_runtime_dependency 'rails_admin', '>= 0.5'
+
+  # TODO: uncomment later, when globalize3 rails4 branch would be commited to rubygems
+  #spec.add_runtime_dependency 'globalize3', '>= 0.3'
+
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
 end

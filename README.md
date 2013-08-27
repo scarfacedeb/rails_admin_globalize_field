@@ -8,7 +8,14 @@
 
 ## Installation
 
-Add and configure globalize3 gem first.
+> rails-4.0 compatible only for now!
+
+Add and configure globalize3 gem first. **You need to use rails4 branch.**
+``` ruby
+  gem 'paper_trail', github: 'airblade/paper_trail'
+  gem 'globalize3', github: 'svenfuchs/globalize3', branch: 'rails4'
+```
+
 
 Add this line to your application's Gemfile:
 ``` ruby
