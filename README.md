@@ -50,6 +50,14 @@ Add configuration to associated **translation** model:
 `:locale` field is always required.
 
 
+Add additional stylesheet in app/assets/stylesheets/rails_admin/theming.scss:
+``` ruby
+  /*
+   *= require rails_admin/ra.globalize_tabs
+  */
+```
+
+
 
 ## Contributing
 
