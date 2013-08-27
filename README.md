@@ -32,6 +32,11 @@ Or install it yourself as:
 
 ## Usage
 
+Add **translation** models to `config.included_models` in `initializers/rails_admin.rb`:
+``` ruby
+  config.included_models = ['Model','Model::Translation']
+```
+
 Add `accepts_nested_attributes_for` for translations to your **translated** model
 ``` ruby
   class Model < ActiveRecord::Base
