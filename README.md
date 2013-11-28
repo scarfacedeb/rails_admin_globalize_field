@@ -42,6 +42,14 @@ Add `accepts_nested_attributes_for` for translations to your **translated** mode
   class Model < ActiveRecord::Base
     translates :title, :desc
     accepts_nested_attributes_for :translations, :allow_destroy => true
+    rails_admin do
+      edit do
+        field :translations do
+          # prevent help text ('optional') below tab pane
+          help false
+        end
+      end
+    end
   end
 ```
 
@@ -51,6 +59,14 @@ Add configuration to associated **translation** model:
     visible false
     configure :locale, :hidden
     include_fields :locale, :title, :desc
+    edit do
+      # optional: declare desc field as rich text field (moved from original Model)
+      field :desc, :ck_editor
+      # hide help block
+      field :locale do
+        help false
+      end
+    end
   end
 ```
 `:locale` field is always required.
