@@ -57,11 +57,16 @@ Add configuration to associated **translation** model:
 ``` ruby
   config.model 'Model::Translation' do
     visible false
-    # hide entire field including help block
-    configure :locale do
-      visible false
-    end
+    configure :locale, :hidden
     include_fields :locale, :title, :desc
+    edit do
+      # optional: declare desc field as rich text field (moved from original Model)
+      field :desc, :ck_editor
+      # hide help block
+      field :locale do
+        help false
+      end
+    end
   end
 ```
 `:locale` field is always required.
