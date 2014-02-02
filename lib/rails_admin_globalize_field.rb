@@ -20,6 +20,10 @@ module RailsAdmin
             "#{super}_attributes".to_sym
           end
 
+          def generic_help
+            "" # false is ignored by I18n.translate
+          end
+
           # Reader for validation errors of the bound object
           def errors
             bindings[:object].errors[name]
