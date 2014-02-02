@@ -1,14 +1,17 @@
+
+// scope all selectors (it's awful, but it's safer)
 .globalize_tabs_type {
-  & > .help-block {
-    margin-left: 180px;
-    padding-top: 5px;
-    border-top: 1px solid #ddd;
-  }
-  & > .controls > .help-inline {
+
+  // Generic adjustments
+
+  .globalize-errors {
     float: right;
     margin-left: 15px;
+    line-height: 36px; // tabs height
   }
-}
-body.rails_admin .form-horizontal.denser .globalize_tabs_type > .help-block {
-  margin-top: 10px;
+  .globalize-help {
+    margin-top: 10px;
+    margin-left: 180px; // == .form-horizontal .controls indent
+  }
+
 }
