@@ -32,14 +32,20 @@ module RailsAdmin
             I18n.locale
           end
 
-          # Returns array of Translation objects
-          # It gets existing or creates new empty translation for every locale
-          # It's used in fields_for method in partial
-          def translations
-            translated_locales = @bindings[:object].translated_locales
-            available_locales.collect do |locale|
-              translated_locales.include?(locale) ? @bindings[:object].translation_for(locale) : @bindings[:object].translations.new({ locale: locale })
+          # Returns array of Translation objects.
+          # It gets existing or creates new empty translation for every locale.
+          # Call the first time with reset_cache == true to update memoized translations.
+          def translations reset_cache=false
+            return @translations if @translations && !reset_cache
+
+            translations = @bindings[:object].translations_by_locale
+            new_locales = available_locales - translations.keys.map(&:to_sym)
+
+            new_locales.map do |locale|
+              translations[locale] = @bindings[:object].translations.new({ locale: locale })
             end
+
+            @translations = translations
           end
         end
       end

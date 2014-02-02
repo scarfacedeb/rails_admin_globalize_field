@@ -1,3 +1,5 @@
+- field.translations(true) # fetch translations and memoize them
+
 .controls
   = form.errors_for(field)
   %ul.nav.nav-tabs{ :style => 'margin-top:5px' }
@@ -5,7 +7,8 @@
       %li{ class: ( 'active' if locale == field.current_locale ) }
         %a{ href: "##{locale}", data: { toggle: "tab" } }= locale
 .tab-content
-  = form.fields_for field.name, field.translations, wrapper: false do |nested_form|
-    .fields.tab-pane{ id: nested_form.object.locale, class: ( 'active' if nested_form.object.locale == field.current_locale ) }
-      = nested_form.generate({:action => :nested, :model_config => field.associated_model_config, :nested_in => field.name })
+  - field.available_locales.each do |locale|
+    = form.fields_for field.name, field.translations[locale], wrapper: false do |nested_form|
+      .fields.tab-pane{ id: nested_form.object.locale, class: ( 'active' if nested_form.object.locale == field.current_locale ) }
+        = nested_form.generate({:action => :nested, :model_config => field.associated_model_config, :nested_in => field.name })
 = form.help_for(field)
