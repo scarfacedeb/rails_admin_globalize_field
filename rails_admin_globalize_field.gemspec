@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = RailsAdminGlobalizeField::VERSION
   spec.authors       = ["Andrew Volozhanin"]
   spec.email         = ["linuxheadrus@gmail.com"]
-  spec.description   = %q{Adds tabbed interface and custom field type for globalize3 translations to Rails_admin}
-  spec.summary       = %q{Tabbed interface and custom field type for globalize3 translations for Rails_admin}
+  spec.description   = %q{Adds tabbed interface and custom field type for globalize translations to Rails_admin}
+  spec.summary       = %q{Tabbed interface and custom field type for globalize translations for Rails_admin}
   spec.homepage      = ""
   spec.license       = "MIT"
 
