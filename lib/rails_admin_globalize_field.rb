@@ -1,8 +1,4 @@
 require "rails_admin_globalize_field/engine"
-
-module RailsAdminGlobalizeField
-end
-
 require 'rails_admin/config/fields/association'
 
 module RailsAdmin
@@ -11,6 +7,12 @@ module RailsAdmin
       module Types
         class GlobalizeTabs < RailsAdmin::Config::Fields::Association
           RailsAdmin::Config::Fields::Types::register(:globalize_tabs, self)
+
+          # A workaround for https://github.com/sferik/rails_admin/pull/1726
+          def initialize(parent, name, properties)
+            properties = parent.abstract_model.associations.detect { |p| name == p[:name] }
+            super
+          end
 
           register_instance_option :partial do
             :form_globalize_tabs
@@ -58,13 +60,11 @@ module RailsAdmin
 end
 
 
-# TODO: apply it only on `configure :translations, :globalize_tabs` fields?
-# see: https://github.com/sferik/rails_admin/pull/1726
-RailsAdmin::Config::Fields.register_factory do |parent, properties, fields|
-  if properties[:name] == :translations
-    fields << RailsAdmin::Config::Fields::Types::GlobalizeTabs.new(parent, properties[:name], properties)
-    true
-  else
-    false
-  end
-end
+# RailsAdmin::Config::Fields.register_factory do |parent, properties, fields|
+#   if properties[:name] == :translations
+#     fields << RailsAdmin::Config::Fields::Types::GlobalizeTabs.new(parent, properties[:name], properties)
+#     true
+#   else
+#     false
+#   end
+# end
