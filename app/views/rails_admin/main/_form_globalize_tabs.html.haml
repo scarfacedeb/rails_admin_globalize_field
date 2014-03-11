@@ -1,16 +1,19 @@
 - field.translations(true) # fetch translations and memoize them
+- key = field.abstract_model.model_name.downcase
 
 .controls
   .globalize-errors
     = form.errors_for(field)
   %ul.nav.nav-tabs{ :style => 'margin-top:5px' }
     - field.available_locales.each do |locale|
+      - klass = "localized-pane-#{locale}-#{key}"
       %li{ class: ( 'active' if locale == field.current_locale ) }
-        %a{ href: "##{locale}", data: { toggle: "tab" } }= locale
+        %a{ href: "#", data: { toggle: "tab",  target: ".#{klass}:first"} }= locale
 .tab-content
   - field.available_locales.each do |locale|
+    - klass = "localized-pane-#{locale}-#{key}"
     = form.fields_for field.name, field.translations[locale], wrapper: false do |nested_form|
-      .fields.tab-pane{ id: locale, class: ( 'active' if locale == field.current_locale ) }
+      .fields.tab-pane{ class: "#{klass} #{'active' if locale == field.current_locale}" }
         = nested_form.generate({:action => :nested, :model_config => field.associated_model_config, :nested_in => field.name })
 .globalize-help
   = form.help_for(field)
