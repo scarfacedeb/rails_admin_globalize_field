@@ -10,7 +10,7 @@ module RailsAdmin
 
           # A workaround for https://github.com/sferik/rails_admin/pull/1726
           def initialize(parent, name, properties)
-            properties = parent.abstract_model.associations.detect { |p| name == p[:name] }
+            properties = parent.abstract_model.associations.detect { |p| name == p.name }
             super
           end
 
