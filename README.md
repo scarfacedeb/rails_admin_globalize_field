@@ -23,6 +23,8 @@ Then add this gem and run `bundle`
 
 ## Usage
 
+> Don't forget to set I18n.available_locale config, because it uses that to determine what tabs to show
+
 Add **translation** models to `config.included_models` in `initializers/rails_admin.rb`:
 ``` ruby
   config.included_models = ['Model','Model::Translation']
