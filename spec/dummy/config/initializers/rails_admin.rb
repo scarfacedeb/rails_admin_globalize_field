@@ -58,6 +58,9 @@ RailsAdmin.config do |config|
   end
 
   config.model 'Admin::Note::Translation' do
+    field :title do
+      label 'Custom note title'
+    end
     include_fields :locale, :title
   end
 
