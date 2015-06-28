@@ -20,7 +20,7 @@ ActiveRecord::Schema.define do
   end
 
   create_table :admin_note_translations, force: true do |t|
-    t.integer  :note_id, null: false
+    t.integer  :admin_note_id, null: false
     t.string   :locale,     null: false
     t.string   :title,      null: false
     t.timestamps null: false
