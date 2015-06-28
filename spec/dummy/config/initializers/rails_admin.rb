@@ -7,7 +7,7 @@ RailsAdmin.config do |config|
   config.main_app_name = ['Dummy', 'Admin']
 
   # Include specific models (exclude the others):
-  config.included_models = ['Page', 'Page::Translation']
+  config.included_models = ['Page', 'Page::Translation', 'Admin::Note', 'Admin::Note::Translation']
 
   ################  Actions configuration  ################
 
@@ -46,5 +46,20 @@ RailsAdmin.config do |config|
   config.model 'Page::Translation' do
     include_fields :locale, :title, :content
   end
+
+  config.model 'Admin::Note' do
+    configure :translations, :globalize_tabs do
+      active true # open by default
+    end
+
+    edit do
+      include_fields :translations, :image
+    end
+  end
+
+  config.model 'Admin::Note::Translation' do
+    include_fields :locale, :title
+  end
+
 
 end

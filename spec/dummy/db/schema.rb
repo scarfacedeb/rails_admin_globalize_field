@@ -14,4 +14,16 @@ ActiveRecord::Schema.define do
     t.timestamps null: false
   end
 
+  create_table :admin_notes, force: true do |t|
+    t.string :image
+    t.timestamps null: false
+  end
+
+  create_table :admin_note_translations, force: true do |t|
+    t.integer  :note_id, null: false
+    t.string   :locale,     null: false
+    t.string   :title,      null: false
+    t.timestamps null: false
+  end
+
 end

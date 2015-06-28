@@ -45,6 +45,11 @@ RSpec.describe RailsAdmin::Config::Fields::Types::GlobalizeTabs do
         end
       end
     end
+  end
 
+  it 'works correctly with namespaced models' do
+    note = Admin::Note.create(title: 'Fix bug with namespaces', image: 'urgent.png')
+    visit "/admin~note/#{note.id}/edit"
+    expect(page).to have_css(".localized-pane-en-admin-note-#{note.id}")
   end
 end
