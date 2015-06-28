@@ -1,4 +1,5 @@
-require "rails_admin_globalize_field/engine"
+require 'rails_admin_globalize_field/engine'
+require 'rails_admin'
 require 'rails_admin/config/fields/association'
 
 module RailsAdmin
