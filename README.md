@@ -47,7 +47,7 @@ Add configuration to your **translated** model and associated **translation** mo
 
   config.model 'Model::Translation' do
     visible false
-    configure :locale, :hidden do
+    field :locale, :hidden do
       help ''
     end
     include_fields :locale, :title, :desc
