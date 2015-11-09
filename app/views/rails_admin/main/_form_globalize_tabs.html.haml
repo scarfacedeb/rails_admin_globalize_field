@@ -1,5 +1,5 @@
 - field.translations(true) # fetch translations and memoize them
-- key = field.abstract_model.model_name.parameterize
+- key = field.abstract_model.model_name.gsub("::", "__").underscore
 
 .controls
   .globalize-errors
