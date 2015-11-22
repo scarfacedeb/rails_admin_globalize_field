@@ -9,6 +9,7 @@ require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 Bundler.require(*Rails.groups)
+require "globalize"
 require "rails_admin_globalize_field"
 
 module Dummy

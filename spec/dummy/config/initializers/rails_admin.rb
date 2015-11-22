@@ -48,18 +48,20 @@ RailsAdmin.config do |config|
   end
 
   config.model 'Admin::Note' do
-    configure :translations, :globalize_tabs do
-      active true # open by default
-    end
+    configure :translations, :globalize_tabs
 
     edit do
-      include_fields :translations, :image
+      include_fields :translations
     end
   end
 
   config.model 'Admin::Note::Translation' do
+    visible false
+    configure :locale, :hidden do
+      help ''
+    end
     field :title do
-      label 'Custom note title'
+      label 'Название'
     end
     include_fields :locale, :title
   end
