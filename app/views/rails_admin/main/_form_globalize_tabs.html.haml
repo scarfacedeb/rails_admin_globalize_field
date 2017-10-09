@@ -10,10 +10,41 @@
       %li{ class: ( 'active' if locale == field.current_locale ) }
         %a{ href: "#", data: { toggle: "tab",  target: ".#{klass}:first"} }= locale
 .tab-content
-  - field.available_locales.each do |locale|
+  - field.available_locales.each_with_index do |locale, index|
     - klass = "localized-pane-#{locale}-#{key}-#{form.object.id}"
     = form.fields_for field.name, field.translations[locale], wrapper: false do |nested_form|
-      .fields.tab-pane{ class: "#{klass} #{'active' if locale == field.current_locale}" }
+      .fields.tab-pane{ class: "#{klass} #{'active' if locale == field.current_locale}", data: {index: index, localize: "true", max_index: field.available_locales.count} }
+        - if index > 0
+          %a{ href: "javascript:CopyTranslations(#{index}, true);" }= "Copy data from #{field.available_locales[0]}"
         = nested_form.generate({:action => :nested, :model_config => field.associated_model_config, :nested_in => field.name })
 .globalize-help
   = form.help_for(field)
+
+
+:javascript
+  function CopyTranslations(index, force){
+    $("[data-index=0]").find("input").each(function(){
+      CopyField($(this).attr("name"), index, force, $(this).val());
+    })
+  }
+
+  function CopyField(name, index, force, new_value){
+    name = name.replace("[0]", "[" + index + "]");
+    if (name.indexOf("locale") < 0){
+      var field = $("[name='" + name + "']");
+      if (force || field.val() == ""){
+        field.val(new_value);
+      }
+    }
+  }
+
+  $(document).on('rails_admin.dom_ready', function() {
+    var max_index = $("[data-localize=true][data-index=0]").data("max-index");
+    $("[data-localize=true][data-index=0]").find("input").each(function(){
+      $(this).on("focusout", function(){
+        for(var i =1; i < max_index; i++){
+          CopyField($(this).attr("name"), i, false, $(this).val());
+        }
+      });
+    });
+  });
