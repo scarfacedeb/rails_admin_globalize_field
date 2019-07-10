@@ -6,7 +6,7 @@ require 'rails_admin_globalize_field/version'
 Gem::Specification.new do |spec|
   spec.name          = "rails_admin_globalize_field"
   spec.version       = RailsAdminGlobalizeField::VERSION
-  spec.authors       = ["Andrew Volozhanin"]
+  spec.authors       = ["Andrew Volozhanin", "Navid Emad"]
   spec.email         = ["scarfacedeb@gmail.com"]
   spec.description   = %q{Adds tabbed interface and custom field type for globalize translations to Rails_admin}
   spec.summary       = %q{Tabbed interface and custom field type for globalize translations for Rails_admin}
@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'globalize', '>= 5.0'
 
-  spec.add_development_dependency "bundler", "~> 1.3"
+  spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'pry-byebug'

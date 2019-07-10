@@ -45,11 +45,11 @@ module RailsAdmin
           def translations reset_cache=false
             return @translations if @translations && !reset_cache
 
-            translations = @bindings[:object].translations_by_locale
+            translations = bindings[:object].translations_by_locale
             new_locales = available_locales - translations.keys.map(&:to_sym)
 
             new_locales.map do |locale|
-              translations[locale] = @bindings[:object].translations.new({ locale: locale })
+              translations[locale] = bindings[:object].translations.new({ locale: locale })
             end
 
             @translations = translations
