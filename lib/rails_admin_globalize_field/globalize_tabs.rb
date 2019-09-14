@@ -12,6 +12,10 @@ module RailsAdminGlobalizeField
       :form_globalize_tabs
     end
 
+    register_instance_option :build_if_missing do
+      true
+    end
+
     def method_name
       "#{super}_attributes".to_sym
     end
@@ -23,12 +27,9 @@ module RailsAdminGlobalizeField
     def tabs
       tabs =
         available_locales.map do |locale|
-          RailsAdminGlobalizeField::Tab.new(
-            locale,
-            bindings[:object].translation_for(locale),
-            validate: submit_action?
-          )
-        end
+          translation = bindings[:object].translation_for(locale, build_if_missing)
+          RailsAdminGlobalizeField::Tab.new(locale, translation, validate: submit_action?) if translation
+        end.compact
 
       activate_tab(tabs)
       tabs
