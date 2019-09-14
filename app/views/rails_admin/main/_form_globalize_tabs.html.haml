@@ -1,19 +1,11 @@
-- field.translations(true) # fetch translations and memoize them
-- key = field.abstract_model.model_name.parameterize
-
 .controls
-  .globalize-errors
-    = form.errors_for(field)
   %ul.nav.nav-tabs{ :style => 'margin-top:5px' }
-    - field.available_locales.each do |locale|
-      - klass = "localized-pane-#{locale}-#{key}-#{form.object.id}"
-      %li{ class: ( 'active' if locale == field.current_locale ) }
-        %a{ href: "#", data: { toggle: "tab",  target: ".#{klass}:first"} }= locale
+    - field.tabs.each do |tab|
+      %li{ class: ('active' if tab.active?) }
+        = link_to tab.locale, "#", data: { toggle: "tab",  target: "##{tab.id}" }, class: ('text-danger' unless tab.valid?)
+
 .tab-content
-  - field.available_locales.each do |locale|
-    - klass = "localized-pane-#{locale}-#{key}-#{form.object.id}"
-    = form.fields_for field.name, field.translations[locale], wrapper: false do |nested_form|
-      .fields.tab-pane{ class: "#{klass} #{'active' if locale == field.current_locale}" }
-        = nested_form.generate({:action => :nested, :model_config => field.associated_model_config, :nested_in => field.name })
-.globalize-help
-  = form.help_for(field)
+  - field.tabs.each do |tab|
+    = form.fields_for field.name, tab.translation, wrapper: false do |f|
+      .fields.tab-pane{ id: tab.id, class: ('active' if tab.active?) }
+        = f.generate(action: :nested, model_config: field.associated_model_config, nested_in: field)
