@@ -1,0 +1,3 @@
+--color
+--format doc
+--exclude-pattern **/dummy/vendor/**/*_spec.rb

@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', "~> 4.2"
+gem 'rails', '~> 6.0'
 gem 'sqlite3'
 
-gem 'globalize', "~> 5.0" 
-gem 'rails_admin', '~> 0.6'
+gem 'globalize', '~> 5.0'
+gem 'rails_admin', '~> 2.0'
 
 gem 'rails_admin_globalize_field', path: '../../'
