@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RailsAdminGlobalizeField
   class Tab
     attr_reader :locale, :translation
