@@ -5,9 +5,7 @@ require 'globalize'
 require 'rails_admin_globalize_field'
 
 require 'rspec/rails'
-require 'capybara/poltergeist'
-
-Capybara.javascript_driver = :poltergeist
+require 'capybara'
 
 RSpec.configure do |config|
   config.disable_monkey_patching!

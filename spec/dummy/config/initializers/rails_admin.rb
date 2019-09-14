@@ -61,7 +61,7 @@ RailsAdmin.config do |config|
       help ''
     end
     field :title do
-      label 'Название'
+      label 'Custom note title'
     end
     include_fields :locale, :title
   end
