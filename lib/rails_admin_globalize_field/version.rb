@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RailsAdminGlobalizeField
-  VERSION = "0.4.0"
+  VERSION = '1.0.0'
 end
