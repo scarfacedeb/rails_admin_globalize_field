@@ -2,7 +2,7 @@
   %ul.nav.nav-tabs{ :style => 'margin-top:5px' }
     - field.tabs.each do |tab|
       %li{ class: ('active' if tab.active?) }
-        = link_to tab.locale, "#", data: { toggle: "tab",  target: "##{tab.id}" }, class: ('text-danger' unless tab.valid?)
+        = link_to tab.label, "#", data: { toggle: "tab",  target: "##{tab.id}" }, class: ('text-danger' unless tab.valid?)
 
 .tab-content
   - field.tabs.each do |tab|

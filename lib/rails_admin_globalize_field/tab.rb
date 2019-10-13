@@ -14,6 +14,10 @@ module RailsAdminGlobalizeField
       ['pane', translation.model_name.param_key, locale].join('-')
     end
 
+    def label
+      @locale
+    end
+
     def active!
       @active = true
     end
