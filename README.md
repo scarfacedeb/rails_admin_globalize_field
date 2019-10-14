@@ -60,6 +60,8 @@ If you need to add validation to the translation class, you can add it on `trans
 
 ### Customizing the UI
 
+#### Localized labels
+
 If you're localizing the Rails Admin UI, you might want to localize the labels of the tabbed interface.
 
 Say you have this in your app:
@@ -86,6 +88,77 @@ sr:
 ```
 
 Everything inside the tabbed interface goes by `<model_name>/translation.<field_name>`. And the "Translations" label goes by `<model_name>.translations`.
+
+#### Custom Tab names
+
+You might want to change the UI so that the tabs spell the names of the locales, like this:
+
+![Screenshot](https://raw.githubusercontent.com/felix91gr/rails_admin_globalize_field/screenshots/screenshots/tabs_0.png)
+
+To do that, you'll need to override the way the gem labels its tabs. To do that, go through these steps:
+
+1. Create a new initializer in your Rails project with an apt name (`config/initializers/rails_admin_globalize_fields.rb`, for example).
+2. In that initializer, override the class method `label`.
+3. Restart the app to see the changes applied.
+
+##### For one locale
+
+If you wanted to have the same name for all locales, say, if your Rails Admin interface is only localized to English, then you'd do it like this:
+
+* In your initializer:
+
+```ruby
+RailsAdminGlobalizeField::Tab.class_eval do
+    def label
+        I18n.translate("locale_name", locale: locale)
+    end
+end
+```
+
+* In your locale file(s):
+
+```yaml
+en:
+  locale_name: "English"
+sq:
+  locale_name: "Albanian"
+sr:
+  locale_name: "Serbian"
+```
+
+##### For multiple locales
+
+If instead you are localizing the Rails Admin interface, you would want the locale names to be available in all different languages. One way you could do that is like this:
+
+* In your initializer:
+
+```ruby
+RailsAdminGlobalizeField::Tab.class_eval do
+    def label
+        I18n.translate("locale_name.#{locale}")
+    end
+end
+```
+
+* In your locale file(s):
+
+```yaml
+en:
+  locale_name:
+    en: English
+    sq: Albanian
+    sr: Serbian
+sq:
+  locale_name:
+    en: anglisht
+    sq: shqiptar
+    sr: serb
+sr:
+  locale_name:
+    en: Engleski
+    sq: Albanski
+    sr: Srpski
+```
 
 ## Screenshot
 
