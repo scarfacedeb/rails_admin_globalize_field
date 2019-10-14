@@ -58,6 +58,35 @@ If you need to add validation to the translation class, you can add it on `trans
   translation_class.validates :title, presence: true
 ```
 
+### Customizing the UI
+
+If you're localizing the Rails Admin UI, you might want to localize the labels of the tabbed interface.
+
+Say you have this in your app:
+
+![Screenshot](https://raw.githubusercontent.com/felix91gr/rails_admin_globalize_field/screenshots/screenshots/labels_1.png)
+
+And you wish it to look like this when Rails Admin is using the Serbian language:
+
+![Screenshot](https://raw.githubusercontent.com/felix91gr/rails_admin_globalize_field/screenshots/screenshots/labels_0.png)
+
+To do that, you need to add these keys to your localization files:
+
+```yaml
+sr:
+  activerecord:
+    attributes:
+      initiative:
+        # ...
+        translations: Prevodi
+      initiative/translation:
+        description: Opis
+        summary: Summari
+        title: Naslov
+```
+
+Everything inside the tabbed interface goes by `<model_name>/translation.<field_name>`. And the "Translations" label goes by `<model_name>.translations`.
+
 ## Screenshot
 
 ![Screenshot](https://raw.github.com/scarfaceDeb/rails_admin_globalize_field/screenshots/screenshots/shot1.png)
