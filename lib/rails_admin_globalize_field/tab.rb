@@ -2,6 +2,8 @@
 
 module RailsAdminGlobalizeField
   class Tab
+    LABEL_KEY = 'admin.globalize_field.tab_label'
+
     attr_reader :locale, :translation
 
     def initialize(locale, translation, validate: true)
@@ -15,7 +17,11 @@ module RailsAdminGlobalizeField
     end
 
     def label
-      @locale
+      if I18n.exists?(LABEL_KEY, locale: locale)
+        I18n.t(LABEL_KEY, locale: locale)
+      else
+        locale
+      end
     end
 
     def active!
