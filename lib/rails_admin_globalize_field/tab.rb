@@ -13,7 +13,7 @@ module RailsAdminGlobalizeField
     end
 
     def id
-      ['pane', translation.model_name.param_key, locale].join('-')
+      ['pane', translation.model_name.param_key, translation.id, locale].join('-')
     end
 
     def label
